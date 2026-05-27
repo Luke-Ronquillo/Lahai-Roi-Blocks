@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1563eeb5a8afbc4c8005d9c8f725b6a, type: 3}
   m_Name: BlockScriptableObject
   m_EditorClassIdentifier: Assembly-CSharp::Block
-  points: 100
+  allColors:
+  - {fileID: 1904320269, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: 370460890, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: 649425471, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: -1567216851, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: -1686629153, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: -1507460293, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: 1978504868, guid: 0301290a77371d84298b9955b368e77e, type: 3}
+  - {fileID: 1963529740, guid: 0301290a77371d84298b9955b368e77e, type: 3}

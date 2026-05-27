@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BlockScriptableObject", menuName = "Scriptable Objects/Block")]
-public class Block : ScriptableObject
+public class BlockScriptableObject : ScriptableObject
 {
-    public int points = 100;
+    public Sprite[] allColors;
 }
