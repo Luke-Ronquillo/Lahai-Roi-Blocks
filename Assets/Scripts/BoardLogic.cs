@@ -15,10 +15,10 @@ public class BoardLogic : MonoBehaviour
     {
         blockInside = collision.gameObject;
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        blockInside = null;
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    blockInside = null;
+    //}
     public void IsValidPosition()
     {
         Transform[] allPositions = blockInside.GetComponent<ObjectDragLogic>().allChildren;
@@ -26,6 +26,10 @@ public class BoardLogic : MonoBehaviour
         {
             Vector3Int cellPosition = tilemap.WorldToCell(allPositions[i].position);
             if (!bounds.Contains((Vector2Int)cellPosition))
+            {
+                return;
+            }
+            if (tilemap.HasTile(cellPosition))
             {
                 return;
             }
@@ -38,12 +42,9 @@ public class BoardLogic : MonoBehaviour
         for (int i = 1; i < allPositions.Length; i++)
         {
             Vector3Int cellPosition = tilemap.WorldToCell(allPositions[i].position);
-            if (!tilemap.HasTile(cellPosition))
-            {
-                Tile newTile = ScriptableObject.CreateInstance<Tile>();
-                newTile.sprite = blockInside.GetComponentInChildren<SpriteRenderer>().sprite;
-                tilemap.SetTile(cellPosition, newTile);
-            }
+            Tile newTile = ScriptableObject.CreateInstance<Tile>();
+            newTile.sprite = blockInside.GetComponentInChildren<SpriteRenderer>().sprite;
+            tilemap.SetTile(cellPosition, newTile);
         }
         Destroy(blockInside);
     }

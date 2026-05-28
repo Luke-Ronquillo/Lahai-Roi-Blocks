@@ -6,17 +6,20 @@ using UnityEngine.Tilemaps;
 public class ObjectDragLogic : MonoBehaviour
 {
     [SerializeField] bool isDragging = false;
-    [SerializeField] UnityEvent OnPlace;
+    UnityEvent OnPlace;
+    BoardLogic boardLogic;
 
     public Transform[] allChildren { get; private set; }
 
     Vector3 originalPos;
-    SpriteRenderer spriteRenderer;
     private void Awake()
     {
         originalPos = transform.position;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         allChildren = GetComponentsInChildren<Transform>();
+        boardLogic = FindAnyObjectByType<BoardLogic>();
+
+        OnPlace = new UnityEvent();
+        OnPlace.AddListener(boardLogic.IsValidPosition);
     }
     private void Update()
     {
