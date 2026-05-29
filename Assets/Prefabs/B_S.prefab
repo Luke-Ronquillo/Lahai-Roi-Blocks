@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1467210494943654073}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 2860920568762297497}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 1, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 4814423849939255008}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 6341145324305728048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,8 +393,8 @@ Transform:
   m_GameObject: {fileID: 9148613445623395410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.75, y: -3.4, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5525683021372838861}
@@ -449,14 +449,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.5, y: 0.5}
-      - {x: 1.5, y: 1.5}
-      - {x: -0.5, y: 1.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -1.5, y: 0.5}
-      - {x: -1.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: 1.5, y: 0}
+      - {x: 1.5, y: 1}
+      - {x: -0.5, y: 1}
+      - {x: -0.5, y: 0}
+      - {x: -1.5, y: 0}
+      - {x: -1.5, y: -1}
+      - {x: 0.5, y: -1}
+      - {x: 0.5, y: 0}
   m_UseDelaunayMesh: 1
 --- !u!114 &7737881803607326635
 MonoBehaviour:
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   isDragging: 0
+  scaleFactor: 0.5
 --- !u!50 &2786190012043686192
 Rigidbody2D:
   serializedVersion: 5

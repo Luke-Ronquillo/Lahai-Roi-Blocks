@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class ObjectDragLogic : MonoBehaviour
 {
     [SerializeField] bool isDragging = false;
+    [SerializeField] float scaleFactor = 0.5f;
     UnityEvent OnPlace;
     BoardLogic boardLogic;
 
@@ -34,13 +35,13 @@ public class ObjectDragLogic : MonoBehaviour
         {
             OnPlace.Invoke();
             transform.position = originalPos;
-            transform.localScale -= new Vector3(0.3f, 0.3f, 0.3f);
+            transform.localScale -= new Vector3(scaleFactor, scaleFactor, scaleFactor);
             isDragging = false;
         }
         else
         {
             allChildren = GetComponentsInChildren<Transform>();
-            transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
+            transform.localScale += new Vector3(scaleFactor, scaleFactor, scaleFactor);
             isDragging = true;
         }
     }

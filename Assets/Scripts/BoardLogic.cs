@@ -1,26 +1,27 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class BoardLogic : MonoBehaviour
 {
     [SerializeField] RectInt bounds;
+    [SerializeField] UnityEvent placedBlock;
     Tilemap tilemap;
     GameObject blockInside;
     private void Awake()
     {
         tilemap = GetComponentInChildren<Tilemap>();
+        //placedBlock = new UnityEvent();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         blockInside = collision.gameObject;
     }
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    blockInside = null;
-    //}
     public void IsValidPosition()
     {
+        if (blockInside == null)
+            return;
         Transform[] allPositions = blockInside.GetComponent<ObjectDragLogic>().allChildren;
         for (int i = 0; i < allPositions.Length; i++)
         {
@@ -46,6 +47,7 @@ public class BoardLogic : MonoBehaviour
             newTile.sprite = blockInside.GetComponentInChildren<SpriteRenderer>().sprite;
             tilemap.SetTile(cellPosition, newTile);
         }
+        placedBlock.Invoke();
         Destroy(blockInside);
     }
 }
