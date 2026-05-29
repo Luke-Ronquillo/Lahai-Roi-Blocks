@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,29 +14,35 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         playerActions.Enable();
-        playerActions.User.OnLeftClick.performed += OnClick;
+        playerActions.User.OnLeftClick.performed += OnLeftClick;
+        playerActions.User.OnRightClick.performed += OnRightClick;
     }
     private void OnDisable()
     {
-        playerActions.User.OnLeftClick.performed -= OnClick;
+        playerActions.User.OnRightClick.performed -= OnRightClick;
+        playerActions.User.OnLeftClick.performed -= OnLeftClick;
         playerActions.Disable();
     }
-    public void OnClick(InputAction.CallbackContext ctx)
+
+    private void OnRightClick(InputAction.CallbackContext context)
     {
         Vector2 worldPosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Collider2D hit = Physics2D.OverlapPoint(worldPosition);
 
-        if (hit != null)
+        if (hit.GetComponent<ObjectDragLogic>() != null)
         {
-            Debug.Log("Clicked On: " + hit.name);
-            if (hit.GetComponent<ObjectDragLogic>() != null)
-            {
-                hit.GetComponent<ObjectDragLogic>().OnClick();
-            }
-        }
-        else
-        {
-            Debug.Log("Clicked on Empty Space");
+            hit.GetComponent<ObjectDragLogic>().OnRotate();
         }
     }
+    private void OnLeftClick(InputAction.CallbackContext ctx)
+    {
+        Vector2 worldPosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Collider2D hit = Physics2D.OverlapPoint(worldPosition);
+
+        if (hit.GetComponent<ObjectDragLogic>() != null)
+        {
+            hit.GetComponent<ObjectDragLogic>().OnClick();
+        }
+    }
+    
 }

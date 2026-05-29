@@ -45,4 +45,11 @@ public class ObjectDragLogic : MonoBehaviour
             isDragging = true;
         }
     }
+    public void OnRotate()
+    {
+        if (isDragging)
+        {
+            transform.Rotate(new Vector3(0f, 0f, 90f));
+        }
+    }
 }

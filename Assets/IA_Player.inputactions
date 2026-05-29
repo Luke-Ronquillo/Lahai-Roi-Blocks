@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OnRightClick",
+                    "type": "Button",
+                    "id": "d2215ed1-7b3c-432a-a0fe-ffcf8b53bb3e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -40,11 +49,22 @@
                 {
                     "name": "",
                     "id": "9734fda9-c97d-4321-873d-4463824bde48",
-                    "path": "<Pointer>/press",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "OnLeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7129bb1-e5ec-44b9-b633-e6c7b804c8e5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnRightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

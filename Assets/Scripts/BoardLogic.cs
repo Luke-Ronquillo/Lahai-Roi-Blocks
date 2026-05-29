@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Android;
 using UnityEngine.Tilemaps;
 
 public class BoardLogic : MonoBehaviour
@@ -11,7 +13,6 @@ public class BoardLogic : MonoBehaviour
     private void Awake()
     {
         tilemap = GetComponentInChildren<Tilemap>();
-        //placedBlock = new UnityEvent();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,6 +49,64 @@ public class BoardLogic : MonoBehaviour
             tilemap.SetTile(cellPosition, newTile);
         }
         placedBlock.Invoke();
+        CheckFullLines();
         Destroy(blockInside);
+    }
+    private void CheckFullLines()
+    {
+        int counter = 0;
+        bool isVertical = true;
+        // Vertical Checking
+        for (int x = 0; x < bounds.height; x++)
+        {
+            for (int y = 0; y < bounds.width; y++)
+            {
+                if (!tilemap.HasTile((Vector3Int)bounds.position + new Vector3Int(x, y, 0)))
+                {
+                    break;
+                }
+                counter++;
+            }
+            if (counter == 10)
+            {
+                ClearLine(x, isVertical);
+            }
+            counter = 0;
+        }
+        // Horizontal Checking
+        isVertical = false;
+        for (int y = 0; y < bounds.height; y++)
+        {
+            for (int x = 0; x < bounds.width; x++)
+            {
+                if (!tilemap.HasTile((Vector3Int)bounds.position + new Vector3Int(x, y, 0)))
+                {
+                    break;
+                }
+                counter++;
+            }
+            if (counter == 10)
+            {
+                ClearLine(y, isVertical);
+            }
+            counter = 0;
+        }
+    }
+    private void ClearLine(int i, bool isVertical)
+    {
+        if (isVertical)
+        {
+            for (int y = 0; y < bounds.height; y++)
+            {
+                tilemap.SetTile((Vector3Int)bounds.position + new Vector3Int(i, y, 0), null);
+            }
+        }
+        else
+        {
+            for (int x = 0; x < bounds.height; x++)
+            {
+                tilemap.SetTile((Vector3Int)bounds.position + new Vector3Int(x, i, 0), null);
+            }
+        }
     }
 }

@@ -109,6 +109,15 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OnRightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2215ed1-7b3c-432a-a0fe-ffcf8b53bb3e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -126,11 +135,22 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9734fda9-c97d-4321-873d-4463824bde48"",
-                    ""path"": ""<Pointer>/press"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""OnLeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7129bb1-e5ec-44b9-b633-e6c7b804c8e5"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OnRightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -204,6 +224,7 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
         m_User = asset.FindActionMap("User", throwIfNotFound: true);
         m_User_Tracking = m_User.FindAction("Tracking", throwIfNotFound: true);
         m_User_OnLeftClick = m_User.FindAction("OnLeftClick", throwIfNotFound: true);
+        m_User_OnRightClick = m_User.FindAction("OnRightClick", throwIfNotFound: true);
     }
 
     ~@IA_Player()
@@ -286,6 +307,7 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
     private List<IUserActions> m_UserActionsCallbackInterfaces = new List<IUserActions>();
     private readonly InputAction m_User_Tracking;
     private readonly InputAction m_User_OnLeftClick;
+    private readonly InputAction m_User_OnRightClick;
     /// <summary>
     /// Provides access to input actions defined in input action map "User".
     /// </summary>
@@ -305,6 +327,10 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "User/OnLeftClick".
         /// </summary>
         public InputAction @OnLeftClick => m_Wrapper.m_User_OnLeftClick;
+        /// <summary>
+        /// Provides access to the underlying input action "User/OnRightClick".
+        /// </summary>
+        public InputAction @OnRightClick => m_Wrapper.m_User_OnRightClick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -337,6 +363,9 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
             @OnLeftClick.started += instance.OnOnLeftClick;
             @OnLeftClick.performed += instance.OnOnLeftClick;
             @OnLeftClick.canceled += instance.OnOnLeftClick;
+            @OnRightClick.started += instance.OnOnRightClick;
+            @OnRightClick.performed += instance.OnOnRightClick;
+            @OnRightClick.canceled += instance.OnOnRightClick;
         }
 
         /// <summary>
@@ -354,6 +383,9 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
             @OnLeftClick.started -= instance.OnOnLeftClick;
             @OnLeftClick.performed -= instance.OnOnLeftClick;
             @OnLeftClick.canceled -= instance.OnOnLeftClick;
+            @OnRightClick.started -= instance.OnOnRightClick;
+            @OnRightClick.performed -= instance.OnOnRightClick;
+            @OnRightClick.canceled -= instance.OnOnRightClick;
         }
 
         /// <summary>
@@ -473,5 +505,12 @@ public partial class @IA_Player: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnOnLeftClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OnRightClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOnRightClick(InputAction.CallbackContext context);
     }
 }
